@@ -112,11 +112,11 @@
         };
 
         f_layer {
-            bindings = <&to 5>;
-            key-positions = <14 13 12 11>;
+            bindings = <&mo 5>;
+            key-positions = <30 33>;
         };
 
-        colemak_dh {
+        qwerty {
             bindings = <&tog 1>;
             key-positions = <29 19>;
         };
@@ -188,10 +188,10 @@
         arrow_numbers {
             label = "2";
             bindings = <
-&mt EXCLAMATION NUMBER_1     &mt AT_SIGN NUMBER_2           &mt HASH NUMBER_3  &mt DOLLAR NUMBER_4  &mt PERCENT NUMBER_5  &mt CARET NUMBER_6  &mt AMPERSAND NUMBER_7  &mt ASTERISK NUMBER_8  &mt LEFT_PARENTHESIS NUMBER_9  &mt RIGHT_PARENTHESIS NUMBER_0
-&mt UNDERSCORE MINUS         &mt PLUS EQUAL                 &none              &none                &none                 &kp HOME            &kp PAGE_UP             &kp UP_ARROW           &kp PAGE_DOWN                  &mt DOUBLE_QUOTES SQT
-&mt LEFT_BRACE LEFT_BRACKET  &mt RIGHT_BRACE RIGHT_BRACKET  &none              &none                &none                 &kp END             &kp LEFT_ARROW          &kp DOWN               &kp RIGHT_ARROW                &mt LS(BACKSLASH) BACKSLASH
-                                                                               &none                &none                 &none               &none
+&mt EXCLAMATION NUMBER_1     &mt AT_SIGN NUMBER_2           &mt LS(NUMBER_3) NUMBER_3  &mt DOLLAR NUMBER_4  &mt PERCENT NUMBER_5  &mt CARET NUMBER_6  &mt AMPERSAND NUMBER_7  &mt ASTERISK NUMBER_8  &mt LEFT_PARENTHESIS NUMBER_9  &mt RIGHT_PARENTHESIS NUMBER_0
+&mt UNDERSCORE MINUS         &mt PLUS EQUAL                 &none                      &none                &none                 &kp HOME            &kp PAGE_UP             &kp UP_ARROW           &kp PAGE_DOWN                  &mt DOUBLE_QUOTES SQT
+&mt LEFT_BRACE LEFT_BRACKET  &mt RIGHT_BRACE RIGHT_BRACKET  &none                      &none                &none                 &kp END             &kp LEFT_ARROW          &kp DOWN               &kp RIGHT_ARROW                &mt LS(BACKSLASH) BACKSLASH
+                                                                                       &none                &none                 &none               &none
             >;
         };
 
