@@ -1,165 +1,221 @@
+#include <dt-bindings/zmk/mouse.h>
+#include <input/processors.dtsi>
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/pointing.h>
+
 /*
- * Copyright (c) 2020 duckyb
- *
- * SPDX-License-Identifier: MIT
+
+   &mmv_input_listener {
+       input-processors = <&zip_xy_scaler 2 1>;
+   };
+
+   &msc_input_listener {
+       input-processors = <&zip_xy_scaler 2 1>;
+   };
+
  */
 
-#include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/outputs.h>
-#include "keymap_italian.h"
+#define ZMK_MOUSE_DEFAULT_MOVE_VAL 1200  // 600
+#define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
 
-// Layer definitions
-#define BASE 0
-#define SYM 1
-#define EXT 2
-#define FNC 3
-#define SYM2 4
-#define ACCENT 5
-#define SETTINGS 6
-// -----------------
-
-&sk {
-	// don't release mods on other mods presses
-	ignore-modifiers;
+&mt {
+    tapping-term-ms = <200>;
+    quick-tap-ms = <175>;
+    flavor = "balanced";
+    hold-trigger-key-positions = <16 17 18 13 12 11 20>;
+    hold-trigger-on-release;
 };
 
+&mmv {
+};
+
+&msc {
+};
+
+&lt {
+};
 
 / {
-	behaviors {
-		// Enables holding the first mod-tap key
-		// by performing a tap-release-hold sequence.
-		// To use it: "&qt KEYCODE1 KEYCODE2"
-		qt: quick_tap {
-			compatible = "zmk,behavior-hold-tap";
-			label = "QUICK_TAP";
-			#binding-cells = <2>;
-			flavor = "hold-preferred";
-			tapping-term-ms = <200>;
-			quick-tap-ms = <200>;
-			bindings = <&kp>, <&kp>;
-		};
-	};
+    behaviors {
+        mmv {
+            acceleration-exponent = <1>;      // 1
+            time-to-max-speed-ms = <900>;    // 40
+            delay-ms = <0>;                   // 0
+        };
 
-	macros {
-		// sometimes my device thinks a modifier is being held down
-		// pressing all modifiers fixes it.
-		unstick: unstick {
-			label = "ZM_unstick";
-			compatible = "zmk,behavior-macro";
-			#binding-cells = <0>;
-			bindings = <&kp LSHIFT &kp RSHIFT &kp LCTRL &kp RCTRL &kp LALT &kp RALT &kp LGUI &kp RGUI>;
-		};
-	};
+        msc {
+            acceleration-exponent = <1>;      // 0
+            time-to-max-speed-ms = <400>;      // 500
+            delay-ms = <0>;                   //   10
+        };
+    };
 
-	combos {
-		compatible = "zmk,combos";
-		// both right thumb keys
-		combo_accent {
-			timeout-ms = <200>;
-			key-positions = <32 33>;
-			bindings = <&mo ACCENT>;
-		};
-		// internal-left & external-right thumb keys
-		combo_sym2 {
-			timeout-ms = <200>;
-			key-positions = <31 33>;
-			bindings = <&mo SYM2>;
-		};
-		// both left thumb keys
-		combo_settings {
-			timeout-ms = <200>;
-			key-positions = <30 31>;
-			bindings = <&mo SETTINGS>;
-		};
-		// left index & middle fingers (home-row)
-		// hold control & space for Adobe workflow
-		combo_ctrl_space {
-			timeout-ms = <200>;
-			key-positions = <12 13>;
-			bindings = <&kp LC(SPACE)>;
-			layers = <BASE>;
-		};
-	};
+    combos {
+        compatible = "zmk,combos";
 
-	keymap {
-		compatible = "zmk,keymap";
-		// Base alpha layer
-		default_layer {
-			label = "Base";
-			bindings = <
-			&kp Q &kp W &kp E &kp R &kp T           &kp Y &kp U  &kp I     &kp O   &kp P 
-			&kp A &kp S &kp D &kp F &kp G           &kp H &kp J  &kp K     &kp L &kp IT_OGRV
-			&kp Z &kp X &kp C &kp V &kp B           &kp N &kp M  &kp COMMA &kp DOT &kp IT_UGRV
-							&mo EXT &qt LSHIFT SPACE           &kp SPACE &sl SYM
-			>;
-		};
+        a {
+            bindings = <&mt GRAVE ESCAPE>;
+            key-positions = <0 1>;
+            layers = <1 0>;
+        };
 
-		// Numbers and high frequency symbols
-		sym_layer {
-			label = "Sym.";
-			bindings = <
-			&kp N1 &kp N2 &kp N3 &kp N4 &kp N5		                                    &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
-			&kp IT_LESS &kp IT_USD &kp IT_LPAR &kp IT_LBRC &kp IT_LBKT  &kp IT_EQL &kp IT_QUES &kp IT_SQUOT &kp IT_MINUS &kp IT_AST
-			&kp IT_GREAT &kp IT_PERC &kp IT_RPAR &kp IT_RBRC &kp IT_RBKT 	&kp IT_AT &kp IT_EXCL &kp IT_DQUOT &kp IT_PLUS &kp IT_FSLH
-														&mo FNC  &mo SYM2       &trans &trans
-			>;
-		};
+        b {
+            bindings = <&kp CLCK>;
+            key-positions = <10 11 12>;
+        };
 
-		// Main modifiers and arrow keys
-		ext_layer {
-			label = "Mods";
-			bindings = <
-			&kp ESC  &kp C_PREV &kp C_PP  &kp C_NEXT  &kp C_PAUSE    	&kp PG_UP  &kp HOME &kp UP &kp END &kp CAPS
-			&sk LALT &sk LGUI  &sk LSHIFT  &sk LCTRL  &kp RALT 			&kp PG_DN &kp LEFT  &kp DOWN  &kp RIGHT   &kp DEL
-			&kp LC(Z)  &kp LC(X) &kp LC(C) &kp TAB   &kp LC(V)          &kp LC(BSPC) &kp BSPC &trans &trans  &trans
-																		&trans &kp LCTRL    &kp ENTER  &mo FNC 
-			>;
-		};
+        d {
+            bindings = <&kp DEL>;
+            key-positions = <8 9>;
+        };
 
-		// Function keys with modifiers
-		fnc_layer {
-			label = "FRow";
-			bindings = <
-			&kp F1 &kp F2 &kp F3 &kp F4 &kp F5                  &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 
-			&sk LALT &sk LGUI &sk LSHIFT &sk LCTRL &kp RALT     &kp F11 &kp F12  &kp PRINTSCREEN &trans &trans
-			&none &none &none &none &none				          &none &none &none &none &none 
-							  &none &none              &none &none  
-			>;
-		};
+        e {
+            bindings = <&kp ENTER>;
+            key-positions = <18 17>;
+        };
 
-		// Low frequency symbols.
-		symbols_2_layer {
-			label = "Sym.2";
-			bindings = <
-			&kp IT_CARET &kp IT_UNDER &kp IT_PND &kp IT_EUR &kp IT_HASH         &none &none &none &none &none 
-			&kp IT_BKTK &kp IT_TILDE &kp IT_BSLH &kp IT_PIPE &kp IT_AND         &none &none &none &none &none
-			&none 			&none 			 &kp IT_SECT &kp IT_CCED &kp IT_DEG				  &none &none &none &none &none
-																	&none &none        	&none &none 
-			>;
-		};
+        h {
+            bindings = <&sys_reset>;
+            key-positions = <1 12 13 24>;
+        };
 
-		// Used to type regional accents.
-		accent_layer {
-			label = "Accent";
-			bindings = <
-			&none &none &none &kp IT_CEGR &none                         &none &none &none &none &none 
-			&kp IT_AGRV &kp IT_IGRV &kp IT_OGRV &kp IT_EGRV &kp IT_EACU &none &none &none &none &none
-			&none &none &none &kp IT_UGRV &none                         &none &none &none &none &none
-									&none &none                         &none &none 
-			>;
-		};
+        j {
+            bindings = <&sys_reset>;
+            key-positions = <17 8 16 25>;
+        };
 
-		// Used to change the keyboard's settings.
-		settings_layer {
-				label = "Sett.";
-				bindings = <
-				&bootloader &none &none &bt BT_CLR &bt BT_SEL 0               &bt BT_SEL 3 &none &unstick &none &bootloader 
-				&none &none &none &none      &bt BT_SEL 1 						  &bt BT_SEL 4 &none &none &none &none
-				&studio_unlock &none &none &none      &bt BT_SEL 2               &bt BT_SEL 5 &none &none &none &studio_unlock
-										&none &none                         &none &none 
-				>;
-		};
-	};
+        Backslash_pipe {
+            bindings = <&mt PIPE BACKSLASH>;
+            key-positions = <29 28>;
+        };
+
+        print_screen {
+            bindings = <&screenshot>;
+            key-positions = <20 21 22>;
+        };
+
+        num_layer {
+            bindings = <&to 3>;
+            key-positions = <6 7 5>;
+        };
+
+        bt_layer {
+            bindings = <&to 6>;
+            key-positions = <4 3 2>;
+        };
+
+        default_layer {
+            bindings = <&to 0>;
+            key-positions = <15 16 17 18>;
+        };
+
+        f_layer {
+            bindings = <&to 5>;
+            key-positions = <14 13 12 11>;
+        };
+
+        colemak_dh {
+            bindings = <&tog 1>;
+            key-positions = <29 19>;
+        };
+
+        grave {
+            bindings = <&mt LS(GRAVE) GRAVE>;
+            key-positions = <0 1>;
+            layers = <2>;
+        };
+    };
+
+    macros {
+        screenshot: screenshot {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LS(LEFT_GUI)>,
+                <&macro_tap>,
+                <&kp S>,
+                <&macro_release>,
+                <&kp LS(LEFT_GUI)>;
+
+            label = "SCREENSHOT";
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        colemak_dh {
+            bindings = <
+  &kp Q           &kp W             &kp F        &kp P           &kp B          &kp J        &kp L            &kp U            &kp Y              &mt COLON SEMI
+  &kp A           &mt LEFT_SHIFT R  &mt LCTRL S  &mt LEFT_ALT T  &kp G          &kp M        &mt RIGHT_ALT N  &mt RCTRL E      &mt RIGHT_SHIFT I  &kp O
+  &mt LEFT_WIN Z  &kp X             &kp C        &kp D           &kp V          &kp K        &kp H            &kp COMMA        &kp DOT            &mt QUESTION SLASH
+                                                 &lt 4 TAB       &lt 2 SPACE    &lt 2 SPACE  &kp BACKSPACE    
+            >;
+
+            label = "colemak_dh";
+        };
+
+        qwerty_layer {
+            label = "0";
+            bindings = <
+  &kp Q           &kp W             &kp E          &kp R           &kp T          &kp Y        &kp U            &kp I            &kp O              &kp P
+  &kp A           &mt LEFT_SHIFT S  &mt LCTRL D    &mt LEFT_ALT F  &kp G          &kp H        &mt RIGHT_ALT J  &mt RCTRL K      &mt RIGHT_SHIFT L  &mt COLON SEMICOLON
+  &mt LEFT_GUI Z  &kp X             &kp C          &kp V           &kp B          &kp N        &kp M            &kp COMMA        &kp DOT            &mt QUESTION SLASH
+                                                   &lt 4 TAB       &lt 2 SPACE    &lt 2 SPACE  &kp BACKSPACE    
+            >;
+        };
+
+        arrow_numbers {
+            label = "1";
+            bindings = <
+  &mt EXCLAMATION NUMBER_1     &mt AT_SIGN NUMBER_2           &mt HASH NUMBER_3  &mt DOLLAR NUMBER_4  &mt PERCENT NUMBER_5    &mt CARET NUMBER_6  &mt AMPERSAND NUMBER_7  &mt ASTERISK NUMBER_8  &mt LEFT_PARENTHESIS NUMBER_9  &mt RIGHT_PARENTHESIS NUMBER_0
+  &mt UNDERSCORE MINUS         &mt PLUS EQUAL                 &none              &none                &none                   &none               &kp PAGE_UP             &kp UP_ARROW           &kp PAGE_DOWN                  &mt DOUBLE_QUOTES SQT
+  &mt LEFT_BRACE LEFT_BRACKET  &mt RIGHT_BRACE RIGHT_BRACKET  &none              &none                &none                   &kp HOME            &kp LEFT_ARROW          &kp DOWN               &kp RIGHT_ARROW                &kp END
+                                                                                 &none                &none                   &none               &none                   
+            >;
+        };
+
+        number_layer {
+            label = "3";
+            bindings = <
+  &none        &none  &none  &none  &none    &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_DIVIDE    &kp KP_MULTIPLY
+  &none        &none  &none  &none  &none    &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_SUBTRACT  &kp PLUS
+  &bootloader  &none  &none  &none  &none    &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp KP_COMMA     &kp KP_EQUAL
+                             &none  &none    &kp KP_NUMBER_0  &kp PERIOD       
+            >;
+        };
+
+        mouse_layer {
+            label = "4";
+            bindings = <
+  &none           &kp C_AC_BACK  &kp C_AC_REFRESH  &kp C_AC_FORWARD  &none             &none         &none           &mmv MOVE_UP    &none            &none
+  &kp LCTRL       &mkp LCLK      &mkp MCLK         &mkp RCLK         &msc SCRL_UP      &none         &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &kp RCTRL
+  &kp LEFT_SHIFT  &none          &msc SCRL_LEFT    &msc SCRL_RIGHT   &msc SCRL_DOWN    &none         &none           &none           &none            &kp RIGHT_SHIFT
+                                                   &none             &none             &kp C_VOL_DN  &kp C_VOL_UP    
+            >;
+        };
+
+        f_layer {
+            label = "5";
+            bindings = <
+  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5    &kp F6   &kp F7   &kp F8  &kp F9  &kp F10
+  &trans  &trans  &trans  &trans  &trans    &kp F11  &kp F12  &trans  &trans  &trans
+  &trans  &trans  &trans  &trans  &trans    &trans   &trans   &trans  &trans  &trans
+                          &trans  &trans    &trans   &trans   
+            >;
+        };
+
+        bt_layer {
+            label = "6";
+            bindings = <
+  &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &trans  &trans  &trans  &trans
+  &trans          &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans
+  &bt BT_CLR_ALL  &bt BT_CLR    &trans        &bt BT_PRV    &bt BT_NXT      &trans  &trans  &trans  &trans  &bootloader
+                                              &trans        &trans          &trans  &trans  
+            >;
+        };
+    };
 };
