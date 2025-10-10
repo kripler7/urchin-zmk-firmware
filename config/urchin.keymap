@@ -86,8 +86,8 @@
             key-positions = <17 8 16 25>;
         };
 
-        Backslash_pipe {
-            bindings = <&mt PIPE BACKSLASH>;
+        copy_paste {
+            bindings = <&mt RC(V) RC(C)>;
             key-positions = <29 28>;
         };
 
@@ -183,8 +183,8 @@
             label = "2";
             bindings = <
 &mt EXCLAMATION NUMBER_1     &mt AT_SIGN NUMBER_2           &mt HASH NUMBER_3  &mt DOLLAR NUMBER_4  &mt PERCENT NUMBER_5  &mt CARET NUMBER_6  &mt AMPERSAND NUMBER_7  &mt ASTERISK NUMBER_8  &mt LEFT_PARENTHESIS NUMBER_9  &mt RIGHT_PARENTHESIS NUMBER_0
-&mt UNDERSCORE MINUS         &mt PLUS EQUAL                 &none              &none                &none                 &none               &kp PAGE_UP             &kp UP_ARROW           &kp PAGE_DOWN                  &mt DOUBLE_QUOTES SQT
-&mt LEFT_BRACE LEFT_BRACKET  &mt RIGHT_BRACE RIGHT_BRACKET  &none              &none                &none                 &kp HOME            &kp LEFT_ARROW          &kp DOWN               &kp RIGHT_ARROW                &kp END
+&mt UNDERSCORE MINUS         &mt PLUS EQUAL                 &none              &none                &none                 &kp HOME            &kp PAGE_UP             &kp UP_ARROW           &kp PAGE_DOWN                  &mt DOUBLE_QUOTES SQT
+&mt LEFT_BRACE LEFT_BRACKET  &mt RIGHT_BRACE RIGHT_BRACKET  &none              &none                &none                 &kp END             &kp LEFT_ARROW          &kp DOWN               &kp RIGHT_ARROW                &mt LS(BACKSLASH) BACKSLASH
                                                                                &none                &none                 &none               &none
             >;
         };
