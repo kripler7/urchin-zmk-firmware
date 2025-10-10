@@ -172,11 +172,11 @@
                                                &lt 4 TAB       &lt 2 SPACE  &lt 2 SPACE  &kp BACKSPACE
             >;
 
-            label = "0";
+            label = "colemak";
         };
 
         qwerty_layer {
-            label = "1";
+            label = "qwerty";
             bindings = <
 &kp Q           &kp W             &kp E        &kp R           &kp T        &kp Y        &kp U            &kp I        &kp O              &kp P
 &kp A           &mt LEFT_SHIFT S  &mt LCTRL D  &mt LEFT_ALT F  &kp G        &kp H        &mt RIGHT_ALT J  &mt RCTRL K  &mt RIGHT_SHIFT L  &mt COLON SEMICOLON
@@ -186,7 +186,7 @@
         };
 
         arrow_numbers {
-            label = "2";
+            label = "arrow_num";
             bindings = <
 &mt EXCLAMATION NUMBER_1     &mt AT_SIGN NUMBER_2           &mt LS(NUMBER_3) NUMBER_3  &mt DOLLAR NUMBER_4  &mt PERCENT NUMBER_5  &mt CARET NUMBER_6  &mt AMPERSAND NUMBER_7  &mt ASTERISK NUMBER_8  &mt LEFT_PARENTHESIS NUMBER_9  &mt RIGHT_PARENTHESIS NUMBER_0
 &mt UNDERSCORE MINUS         &mt PLUS EQUAL                 &none                      &none                &none                 &kp HOME            &kp PAGE_UP             &kp UP_ARROW           &kp PAGE_DOWN                  &mt DOUBLE_QUOTES SQT
@@ -196,7 +196,7 @@
         };
 
         number_layer {
-            label = "3";
+            label = "num_pad";
             bindings = <
 &none        &none  &none  &none  &none  &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_DIVIDE    &kp KP_MULTIPLY
 &none        &none  &none  &none  &none  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_SUBTRACT  &kp PLUS
@@ -206,7 +206,7 @@
         };
 
         mouse_layer {
-            label = "4";
+            label = "mouse";
             bindings = <
 &none           &kp C_AC_BACK  &kp C_AC_REFRESH  &kp C_AC_FORWARD  &none           &none         &none           &mmv MOVE_UP    &none            &none
 &kp LCTRL       &mkp LCLK      &mkp MCLK         &mkp RCLK         &msc SCRL_UP    &none         &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &kp RCTRL
@@ -216,7 +216,7 @@
         };
 
         f_layer {
-            label = "5";
+            label = "f_keys";
             bindings = <
 &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6   &kp F7   &kp F8  &kp F9  &kp F10
 &trans  &trans  &trans  &trans  &trans  &kp F11  &kp F12  &trans  &trans  &trans
@@ -226,7 +226,7 @@
         };
 
         bt_layer {
-            label = "6";
+            label = "BT";
             bindings = <
 &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans  &trans  &trans  &trans  &trans
 &trans          &trans        &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans
