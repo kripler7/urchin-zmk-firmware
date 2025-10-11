@@ -55,33 +55,33 @@
     combos {
         compatible = "zmk,combos";
 
-        a {
+        esc {
             bindings = <&mt GRAVE ESCAPE>;
             key-positions = <0 1>;
-            layers = <1 0>;
+            layers = <0>;
         };
 
-        b {
+        caps {
             bindings = <&kp CLCK>;
             key-positions = <10 11 12>;
         };
 
-        d {
+        backspace {
             bindings = <&kp DEL>;
             key-positions = <8 9>;
         };
 
-        e {
+        enter {
             bindings = <&kp ENTER>;
             key-positions = <18 17>;
         };
 
-        h {
+        reset_1 {
             bindings = <&sys_reset>;
             key-positions = <1 12 13 24>;
         };
 
-        j {
+        reset_2 {
             bindings = <&sys_reset>;
             key-positions = <17 8 16 25>;
         };
@@ -97,12 +97,12 @@
         };
 
         num_layer {
-            bindings = <&to 3>;
+            bindings = <&to 2>;
             key-positions = <6 7 5>;
         };
 
         bt_layer {
-            bindings = <&to 6>;
+            bindings = <&to 5>;
             key-positions = <4 3 2>;
         };
 
@@ -112,19 +112,14 @@
         };
 
         f_layer {
-            bindings = <&mo 5>;
+            bindings = <&mo 4>;
             key-positions = <30 33>;
-        };
-
-        qwerty {
-            bindings = <&tog 1>;
-            key-positions = <29 19>;
         };
 
         grave {
             bindings = <&mt LS(GRAVE) GRAVE>;
             key-positions = <0 1>;
-            layers = <2>;
+            layers = <1>;
         };
 
         gui_tab {
@@ -135,13 +130,19 @@
         shift_select {
             bindings = <&kp LEFT_SHIFT>;
             key-positions = <11 12>;
-            layers = <2>;
+            layers = <1>;
         };
 
         mute {
             bindings = <&kp K_MUTE>;
             key-positions = <32 33>;
-            layers = <4>;
+            layers = <3>;
+        };
+
+        back_num {
+            bindings = <&kp BACKSPACE>;
+            key-positions = <9 8>;
+            layers = <2>;
         };
     };
 
@@ -169,29 +170,19 @@
 &kp Q           &kp W             &kp F        &kp P           &kp B        &kp J        &kp L            &kp U        &kp Y              &mt COLON SEMI
 &kp A           &mt LEFT_SHIFT R  &mt LCTRL S  &mt LEFT_ALT T  &kp G        &kp M        &mt RIGHT_ALT N  &mt RCTRL E  &mt RIGHT_SHIFT I  &kp O
 &mt LEFT_WIN Z  &kp X             &kp C        &kp D           &kp V        &kp K        &kp H            &kp COMMA    &kp DOT            &mt QUESTION SLASH
-                                               &lt 4 TAB       &lt 2 SPACE  &lt 5 SPACE  &kp BACKSPACE
+                                               &lt 3 TAB       &lt 1 SPACE  &lt 1 SPACE  &kp BACKSPACE
             >;
 
             label = "colemak";
         };
 
-        qwerty_layer {
-            label = "qwerty";
-            bindings = <
-&kp Q           &kp W             &kp E        &kp R           &kp T        &kp Y        &kp U            &kp I        &kp O              &kp P
-&kp A           &mt LEFT_SHIFT S  &mt LCTRL D  &mt LEFT_ALT F  &kp G        &kp H        &mt RIGHT_ALT J  &mt RCTRL K  &mt RIGHT_SHIFT L  &mt COLON SEMICOLON
-&mt LEFT_GUI Z  &kp X             &kp C        &kp V           &kp B        &kp N        &kp M            &kp COMMA    &kp DOT            &mt QUESTION SLASH
-                                               &lt 4 TAB       &lt 2 SPACE  &lt 2 SPACE  &kp BACKSPACE
-            >;
-        };
-
         arrow_numbers {
             label = "arrow_num";
             bindings = <
-&mt EXCLAMATION NUMBER_1     &mt AT_SIGN NUMBER_2           &mt LS(NUMBER_3) NUMBER_3  &mt DOLLAR NUMBER_4  &mt PERCENT NUMBER_5  &mt CARET NUMBER_6  &mt AMPERSAND NUMBER_7  &mt ASTERISK NUMBER_8  &mt LEFT_PARENTHESIS NUMBER_9  &mt RIGHT_PARENTHESIS NUMBER_0
-&mt UNDERSCORE MINUS         &mt PLUS EQUAL                 &none                      &none                &none                 &kp HOME            &kp PAGE_UP             &kp UP_ARROW           &kp PAGE_DOWN                  &mt DOUBLE_QUOTES SQT
-&mt LEFT_BRACE LEFT_BRACKET  &mt RIGHT_BRACE RIGHT_BRACKET  &none                      &none                &none                 &kp END             &kp LEFT_ARROW          &kp DOWN               &kp RIGHT_ARROW                &mt LS(BACKSLASH) BACKSLASH
-                                                                                       &none                &none                 &none               &none
+&mt EXCLAMATION NUMBER_1     &mt AT_SIGN NUMBER_2           &mt HASH NUMBER_3  &mt DOLLAR NUMBER_4  &mt PERCENT NUMBER_5  &mt CARET NUMBER_6  &mt AMPERSAND NUMBER_7  &mt ASTERISK NUMBER_8  &mt LEFT_PARENTHESIS NUMBER_9  &mt RIGHT_PARENTHESIS NUMBER_0
+&mt UNDERSCORE MINUS         &mt PLUS EQUAL                 &none              &none                &none                 &kp HOME            &kp PAGE_UP             &kp UP_ARROW           &kp PAGE_DOWN                  &mt DOUBLE_QUOTES SQT
+&mt LEFT_BRACE LEFT_BRACKET  &mt RIGHT_BRACE RIGHT_BRACKET  &none              &none                &none                 &kp END             &kp LEFT_ARROW          &kp DOWN               &kp RIGHT_ARROW                &mt LS(BACKSLASH) BACKSLASH
+                                                                               &none                &none                 &none               &none
             >;
         };
 
@@ -218,10 +209,10 @@
         f_layer {
             label = "f_keys";
             bindings = <
-&kp F1  &kp F2  &kp NUMBER_3  &kp F4  &kp F5  &kp F6   &kp F7   &kp F8  &kp F9  &kp F10
-&trans  &trans  &trans        &trans  &trans  &kp F11  &kp F12  &trans  &trans  &trans
-&trans  &trans  &trans        &trans  &trans  &trans   &trans   &trans  &trans  &trans
-                              &trans  &trans  &trans   &trans
+&kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6   &kp F7   &kp F8  &kp F9  &kp F10
+&trans  &trans  &trans  &trans  &trans  &kp F11  &kp F12  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans   &trans   &trans  &trans  &trans
+                        &trans  &trans  &trans   &trans
             >;
         };
 
