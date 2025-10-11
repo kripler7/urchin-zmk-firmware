@@ -169,7 +169,7 @@
 &kp Q           &kp W             &kp F        &kp P           &kp B        &kp J        &kp L            &kp U        &kp Y              &mt COLON SEMI
 &kp A           &mt LEFT_SHIFT R  &mt LCTRL S  &mt LEFT_ALT T  &kp G        &kp M        &mt RIGHT_ALT N  &mt RCTRL E  &mt RIGHT_SHIFT I  &kp O
 &mt LEFT_WIN Z  &kp X             &kp C        &kp D           &kp V        &kp K        &kp H            &kp COMMA    &kp DOT            &mt QUESTION SLASH
-                                               &lt 4 TAB       &lt 2 SPACE  &lt 2 SPACE  &kp BACKSPACE
+                                               &lt 4 TAB       &lt 2 SPACE  &lt 5 SPACE  &kp BACKSPACE
             >;
 
             label = "colemak";
@@ -218,10 +218,10 @@
         f_layer {
             label = "f_keys";
             bindings = <
-&kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6   &kp F7   &kp F8  &kp F9  &kp F10
-&trans  &trans  &trans  &trans  &trans  &kp F11  &kp F12  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans   &trans   &trans  &trans  &trans
-                        &trans  &trans  &trans   &trans
+&kp F1  &kp F2  &kp NUMBER_3  &kp F4  &kp F5  &kp F6   &kp F7   &kp F8  &kp F9  &kp F10
+&trans  &trans  &trans        &trans  &trans  &kp F11  &kp F12  &trans  &trans  &trans
+&trans  &trans  &trans        &trans  &trans  &trans   &trans   &trans  &trans  &trans
+                              &trans  &trans  &trans   &trans
             >;
         };
 
